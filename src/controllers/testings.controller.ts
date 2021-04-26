@@ -19,9 +19,9 @@ export class TestingsController {
   getAll(): Promise<Testing[]> {
     return this.testingService.findAll();
   }
-  @Get(':id')
-  getOne(@Param('id') id: number): Promise<Testing> {
-    return this.testingService.findOne(id);
+  @Get(':idUser')
+  findAllFromUsers(@Param('idUser') idUser: number): Promise<Testing[]> {
+    return this.testingService.findAllFromUsers(idUser);
   }
   @Post()
   create(@Body() createTestingDto: CreateTestingDto): Testing {

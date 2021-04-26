@@ -14,6 +14,11 @@ export class TestingsService {
   findAll(): Promise<Testing[]> {
     return this.testingsRepository.find();
   }
+  findAllFromUsers(idUser: number): Promise<Testing[]> {
+    return this.testingsRepository.find({
+      where: { user: idUser },
+    });
+  }
 
   findOne(id: number): Promise<Testing> {
     return this.testingsRepository.findOne(id);

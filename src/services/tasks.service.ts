@@ -13,8 +13,12 @@ export class TasksService {
   findAll(): Promise<Task[]> {
     return this.taskRepository.find();
   }
-
   findOne(id: number): Promise<Task> {
     return this.taskRepository.findOne(id);
+  }
+  findAllFromTest(id: number): Promise<Task[]> {
+    return this.taskRepository.find({
+      where: { test: id },
+    });
   }
 }

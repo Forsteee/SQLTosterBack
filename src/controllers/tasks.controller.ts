@@ -11,7 +11,7 @@ export class TasksController {
     return this.taskService.findAll();
   }
   @Get(':id')
-  getOne(@Param('id') id: number): Promise<Task> {
-    return this.taskService.findOne(id);
+  getOnes(@Param('id') id: number): Promise<Task[]> {
+    return this.taskService.findAllFromTest(id);
   }
 }
