@@ -7,6 +7,7 @@ import { MaterialsModule } from './modules/materials.module';
 import { TasksModule } from './modules/tasks.module';
 import { TestingsModule } from './modules/testings.module';
 import { TestsModule } from './modules/tests.module';
+import { AuthModule } from './modules/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TestsModule } from './modules/tests.module';
     TasksModule,
     TestingsModule,
     TestsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

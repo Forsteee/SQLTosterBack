@@ -11,6 +11,7 @@ import { User } from '../entities/users.entity';
 import { UsersService } from '../services/users.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { SearchUserDto } from '../dto/search-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -25,9 +26,13 @@ export class UsersController {
     return this.userService.findOne(id);
   }
   @Post()
-  create(@Body() createUserDto: CreateUserDto): User {
-    return this.userService.create(createUserDto);
+  findOne(@Body() searchUserDto: SearchUserDto): Promise<User> {
+    return this.userService.findOneUAuth(searchUserDto);
   }
+  /*@Post()
+  create(@Body() createUserDto: CreateUserDto): Promise<User> {
+    return this.userService.create(createUserDto);
+  }*/
   @Delete(':id')
   remove(@Param('id') id: number): Promise<void> {
     return this.userService.remove(id);

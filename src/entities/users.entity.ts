@@ -4,7 +4,10 @@ import { Testing } from './testings.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  userId: number;
+
+  @Column()
+  login: string;
 
   @Column()
   name: string;
