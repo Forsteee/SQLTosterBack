@@ -29,15 +29,15 @@ export class UsersController {
   findOne(@Body() searchUserDto: SearchUserDto): Promise<User> {
     return this.userService.findOneUAuth(searchUserDto);
   }
-  /*@Post()
+  @Post('/create')
   create(@Body() createUserDto: CreateUserDto): Promise<User> {
     return this.userService.create(createUserDto);
-  }*/
+  }
   @Delete(':id')
   remove(@Param('id') id: number): Promise<void> {
     return this.userService.remove(id);
   }
-  @Put('id')
+  @Put(':id')
   update(
     @Param('id') id: number,
     @Body() updateUserDto: UpdateUserDto,

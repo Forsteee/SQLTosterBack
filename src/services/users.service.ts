@@ -5,6 +5,9 @@ import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { SearchUserDto } from '../dto/search-user.dto';
+import * as bcrypt from 'bcrypt';
+import { response } from 'express';
+import { exhaustiveTypeException } from 'tsconfig-paths/lib/try-path';
 
 @Injectable()
 export class UsersService {
@@ -26,15 +29,26 @@ export class UsersService {
 
   async create(userDto: CreateUserDto) {
     //if (!this.usersRepository.findOne({ login: userDto.login })) {
-    const newUser = new User();
-    newUser.login = userDto.login;
+    //const newUser = new User();
+    if (await this.usersRepository.findOne({ login: userDto.login })) {
+      return null;
+    } else {
+      const hashedPassword = await bcrypt.hash(userDto.password, 10);
+      const user = await this.usersRepository.save({
+        ...userDto,
+        password: hashedPassword,
+      });
+      user.password = undefined;
+      return user;
+    }
+    /*newUser.login = userDto.login;
     newUser.name = userDto.name;
-    newUser.mail = userDto.name;
-    newUser.password = userDto.name;
-    newUser.patronymic = userDto.name;
-    newUser.surname = userDto.name;
+    newUser.mail = userDto.mail;
+    newUser.password = userDto.password;
+    newUser.patronymic = userDto.patronymic;
+    newUser.surname = userDto.surname;
     newUser.isAdmin = userDto.isAdmin;
-    return this.usersRepository.save(newUser);
+    return this.usersRepository.save(newUser);*/
     //}
   }
 
