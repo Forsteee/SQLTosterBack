@@ -27,6 +27,9 @@ export class User {
   @Column()
   isAdmin: boolean;
 
+  @Column()
+  isTwoFactorAuthenticationEnabled: boolean;
+
   @OneToMany(() => Testing, (testing) => testing.user)
   testings: Testing[];
 }

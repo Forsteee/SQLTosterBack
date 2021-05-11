@@ -27,6 +27,10 @@ export class UsersService {
     return this.usersRepository.findOne({ login: userDto.login });
   }
 
+  getById(userId: number): Promise<User | undefined> {
+    return this.usersRepository.findOne(userId);
+  }
+
   async create(userDto: CreateUserDto) {
     //if (!this.usersRepository.findOne({ login: userDto.login })) {
     //const newUser = new User();

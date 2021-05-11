@@ -16,6 +16,12 @@ export class Test {
   @Column()
   type: string;
 
+  @Column()
+  description: string;
+
+  @Column()
+  img: string;
+
   @OneToMany(() => Task, (task) => task.test)
   tasks: Task[];
 
