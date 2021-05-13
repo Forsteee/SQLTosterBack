@@ -15,8 +15,8 @@ export class AuthService {
   async validateUser(username: string, pass: string): Promise<any> {
     const userSDto = new SearchUserDto(username);
     const user = await this.usersService.findOneUAuth(userSDto);
-    if (user && user.password === pass) {
-      //(await bcrypt.compare(pass, user.password))
+    if (user && (await bcrypt.compare(pass, user.password))) {
+      //user.password === pass
       const { password, ...result } = user;
       return result;
     }

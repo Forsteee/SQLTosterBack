@@ -6,12 +6,14 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { User } from '../entities/users.entity';
 import { UsersService } from '../services/users.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { SearchUserDto } from '../dto/search-user.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -20,6 +22,11 @@ export class UsersController {
   @Get()
   getAll(): Promise<User[]> {
     return this.userService.findAll();
+  }
+  @UseGuards(JwtAuthGuard)
+  @Post('/checkToken')
+  checkToken(@Body() user_id: number): number {
+    return user_id;
   }
   @Get(':id')
   getOne(@Param('id') id: number): Promise<User> {

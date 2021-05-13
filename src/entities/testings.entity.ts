@@ -15,4 +15,7 @@ export class Testing {
 
   @Column()
   marker: number;
+
+  @Column()
+  finished: boolean;
 }

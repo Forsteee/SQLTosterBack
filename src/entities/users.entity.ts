@@ -1,5 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import { Testing } from './testings.entity';
+import {isUndefined} from "@nestjs/common/utils/shared.utils";
+import {isDefined} from "class-validator";
+import any = jasmine.any;
 
 @Entity()
 export class User {
@@ -15,7 +18,7 @@ export class User {
   @Column()
   surname: string;
 
-  @Column()
+  @Column({ nullable: true })
   patronymic: string;
 
   @Column()
