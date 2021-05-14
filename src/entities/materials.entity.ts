@@ -4,6 +4,8 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 export class Material {
   @PrimaryGeneratedColumn()
   id: number;
+  @Column()
+  chapter: number;
 
   @Column({ type: 'json', nullable: true })
   file: any;

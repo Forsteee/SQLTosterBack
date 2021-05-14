@@ -6,6 +6,7 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { SearchUserDto } from '../dto/search-user.dto';
 import * as bcrypt from 'bcrypt';
+import {Testing} from "../entities/testings.entity";
 
 
 @Injectable()
@@ -55,8 +56,11 @@ export class UsersService {
     await this.usersRepository.delete(id);
   }
 
-  /*async usersHeaderForFront(id_user: number) {
-    const usersHeader = await this.usersRepository.find
-    return null;
-  }*/
+  async usersHeaderForFront(id_user: number) {
+    const usersHeader = await this.usersRepository.find({
+      where: { userId: id_user },
+      relations: ['Testing'],
+    });
+    return usersHeader;
+  }
 }

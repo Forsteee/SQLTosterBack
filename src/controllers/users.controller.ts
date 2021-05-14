@@ -51,4 +51,8 @@ export class UsersController {
   ): Promise<User> {
     return this.userService.update(id, updateUserDto);
   }
+  @Post('/usersHead')
+  findUsersHead(@Body() userId: number): Promise<any> {
+    return this.userService.usersHeaderForFront(userId);
+  }
 }
