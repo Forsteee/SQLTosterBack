@@ -24,12 +24,21 @@ export class TestingsService {
     return this.testingsRepository.findOne(id);
   }
 
-  create(testingDto: CreateTestingDto) {
-    const newTesting = new Testing();
-    newTesting.user = testingDto.user;
-    newTesting.test = testingDto.test;
-    newTesting.marker = testingDto.marker;
-    return this.testingsRepository.create(newTesting);
+  async create(testingDto: CreateTestingDto) {
+    if (
+      !(await this.testingsRepository.findOne({
+        user: testingDto.userUserId,
+        test: testingDto.testId,
+      }))
+    ) {
+      return await this.testingsRepository.save({
+        ...testingDto,
+        marker: 1,
+        finished: false,
+      });
+    } else {
+      return null;
+    }
   }
 
   async update(id: number, testingDto: UpdateTestingDto) {

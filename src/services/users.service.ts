@@ -6,7 +6,6 @@ import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { SearchUserDto } from '../dto/search-user.dto';
 import * as bcrypt from 'bcrypt';
-import {Testing} from "../entities/testings.entity";
 
 
 @Injectable()

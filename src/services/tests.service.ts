@@ -9,8 +9,8 @@ export class TestsService {
     @InjectRepository(Test)
     private testsRepository: Repository<Test>,
   ) {}
-  findAll(): Promise<Test[]> {
-    return this.testsRepository.find();
+  findAll(logIn: boolean): Promise<Test[]> {
+    return this.testsRepository.find({ where: { logIn: logIn } });
   }
 
   findOne(id: number): Promise<Test> {

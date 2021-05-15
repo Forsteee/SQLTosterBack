@@ -24,7 +24,7 @@ export class TestingsController {
     return this.testingService.findAllFromUsers(idUser);
   }
   @Post()
-  create(@Body() createTestingDto: CreateTestingDto): Testing {
+  create(@Body() createTestingDto: CreateTestingDto): Promise<Testing | null> {
     return this.testingService.create(createTestingDto);
   }
   @Delete(':id')

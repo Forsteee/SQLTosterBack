@@ -22,6 +22,9 @@ export class Test {
   @Column()
   img: string;
 
+  @Column()
+  logIn: boolean;
+
   @OneToMany(() => Task, (task) => task.test)
   tasks: Task[];
 

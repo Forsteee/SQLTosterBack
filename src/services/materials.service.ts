@@ -11,7 +11,11 @@ export class MaterialsService {
   ) {}
 
   findAll(): Promise<Material[]> {
-    return this.materialsRepository.find();
+    return this.materialsRepository.find({
+      order: {
+        chapter: 'ASC',
+      },
+    });
   }
 
   findOne(id: number): Promise<Material> {

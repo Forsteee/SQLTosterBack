@@ -7,6 +7,6 @@ export class Material {
   @Column()
   chapter: number;
 
-  @Column({ type: 'json', nullable: true })
+  @Column({ type: 'json', nullable: true, array: false })
   file: any;
 }
