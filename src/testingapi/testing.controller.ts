@@ -6,7 +6,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 @Controller('testingapi')
 export class testingController {
   constructor(private readonly testingService: testingService) {}
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Post('')
   testing(@Body() request: requestDto): any {
     return this.testingService.testing(request);

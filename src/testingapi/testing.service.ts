@@ -1,22 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { getManager } from 'typeorm';
 import { requestDto } from '../dto/request.dto';
+import createConnection from './db/dbtest/dbconfig';
 
 @Injectable()
 export class testingService {
   async testing(request: requestDto): Promise<any> {
-    const manager = getManager();
+    let returnToFront;
     const requestFromUser = request.request;
+
     if (requestFromUser !== '') {
-      // проверка на пустую строку
-      return await manager
-        .query(requestFromUser)
-        .then(function (response) {
-          return response;
+      await createConnection
+        .then(async (connection) => {
+          await connection.manager
+            .query(requestFromUser)
+            .then((response) => {
+              returnToFront = response;
+            })
+            .catch((error) => {
+              returnToFront = error;
+            });
         })
-        .catch(function (error) {
-          return error;
+        .catch((error) => {
+          returnToFront = error;
         });
+      return returnToFront;
     } else {
       return 'Пустой запрос';
     }
