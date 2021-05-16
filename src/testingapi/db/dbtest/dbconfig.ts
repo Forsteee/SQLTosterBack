@@ -12,5 +12,5 @@ export default createConnection({
   cli: {
     migrationsDir: 'migration',
   },*/
-  synchronize: true,
+  //synchronize: true,
 });

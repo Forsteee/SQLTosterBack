@@ -22,6 +22,9 @@ export class Test {
   @Column()
   img: string;
 
+  @Column({ nullable: true })
+  integrationLink: string;
+
   @Column()
   logIn: boolean;
 
