@@ -5,8 +5,8 @@ import { Test } from '../entities/tests.entity';
 @Controller('tests')
 export class TestsController {
   constructor(private readonly testsService: TestsService) {}
-  @Get()
-  getAll(logIn: boolean): Promise<Test[]> {
+  @Get('/allauth/:logIn')
+  getAll(@Param('logIn') logIn: boolean): Promise<Test[]> {
     return this.testsService.findAll(logIn);
   }
   @Get(':id')

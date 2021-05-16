@@ -1,7 +1,7 @@
+import { Tests } from '../testingapi/db/dbtest/entities/tests.entity';
 import { User } from '../entities/users.entity';
-import { Test } from '../entities/tests.entity';
 
 export class CreateTestingDto {
-  readonly userUserId: User;
-  readonly testId: Test;
+  readonly userId: User;
+  readonly testId: Tests;
 }
