@@ -23,6 +23,7 @@ export class UsersController {
   getAll(): Promise<User[]> {
     return this.userService.findAll();
   }
+
   @UseGuards(JwtAuthGuard)
   @Post('/checkToken')
   checkToken(@Body() user_id: number): number {

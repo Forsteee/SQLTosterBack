@@ -7,7 +7,6 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { SearchUserDto } from '../dto/search-user.dto';
 import * as bcrypt from 'bcrypt';
 
-
 @Injectable()
 export class UsersService {
   constructor(
@@ -19,8 +18,10 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number): Promise<User> {
-    return this.usersRepository.findOne(id);
+  async findOne(id: number): Promise<User> {
+    const user = await this.usersRepository.findOne(id);
+    user.password = undefined;
+    return user;
   }
   async findOneUAuth(userDto: SearchUserDto): Promise<User | undefined> {
     return this.usersRepository.findOne({ login: userDto.login });

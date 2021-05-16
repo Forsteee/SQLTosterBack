@@ -26,8 +26,11 @@ export class TestingsService {
     });
   }
 
-  findOne(id: number): Promise<Testing> {
-    return this.testingsRepository.findOne(id);
+  findOneUsersTest(userId: User, testId: Test): Promise<Testing> {
+    return this.testingsRepository.findOne({
+      user: userId,
+      test: testId,
+    });
   }
 
   async create(testingDto: CreateTestingDto) {
@@ -49,9 +52,9 @@ export class TestingsService {
   }
 
   async update(id: number, testingDto: UpdateTestingDto) {
-    const user = await this.testingsRepository.findOne(id);
-    this.testingsRepository.merge(user, testingDto);
-    return this.testingsRepository.save(user);
+    const testing = await this.testingsRepository.findOne(id);
+    this.testingsRepository.merge(testing, testingDto);
+    return this.testingsRepository.save(testing);
   }
 
   async remove(id: number): Promise<void> {

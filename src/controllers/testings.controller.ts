@@ -23,6 +23,10 @@ export class TestingsController {
   findAllFromUsers(@Param('idUser') idUser: number): Promise<Testing[]> {
     return this.testingService.findAllFromUsers(idUser);
   }
+  @Get(':userId/:testId')
+  findOneUsersTest(@Param() params): Promise<Testing> {
+    return this.testingService.findOneUsersTest(params.userId, params.testId);
+  }
   @Post()
   create(@Body() createTestingDto: CreateTestingDto): Promise<Testing | null> {
     return this.testingService.create(createTestingDto);
@@ -31,7 +35,7 @@ export class TestingsController {
   remove(@Param('id') id: number): Promise<void> {
     return this.testingService.remove(id);
   }
-  @Put('id')
+  @Put(':id')
   update(
     @Param('id') id: number,
     @Body() updateTestingDto: UpdateTestingDto,
