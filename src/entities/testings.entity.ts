@@ -18,4 +18,7 @@ export class Testing {
 
   @Column()
   finished: boolean;
+
+  @Column({ nullable: true })
+  result: JSON;
 }

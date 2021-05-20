@@ -21,6 +21,9 @@ export class Task {
   @Column()
   recommendation: string;
 
+  @Column({ type: 'json', nullable: true, array: false })
+  answer: any;
+
   @ManyToOne(() => Test, (test) => test.tasks)
   test: Test;
 }
