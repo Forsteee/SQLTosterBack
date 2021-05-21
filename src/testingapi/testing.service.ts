@@ -4,15 +4,15 @@ import createConnection from './db/dbtest/dbconfig';
 import { distance } from 'fastest-levenshtein';
 import { RegstandartDto } from '../dto/regstandart.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from '../entities/tasks.entity';
+/*import { Task } from '../entities/tasks.entity';*/
 import { Repository } from 'typeorm';
-import _, { map } from 'underscore';
+/*import _, { map } from 'underscore';*/
 
 @Injectable()
 export class testingService {
   constructor(
-    @InjectRepository(Task)
-    private taskRepository: Repository<Task>,
+    /*@InjectRepository(Task)
+    private taskRepository: Repository<Task>,*/
   ) {}
   async getEqPercent(request: RegstandartDto): Promise<any> {
     // определяет процентное соотношение рекомендованного написания к отправленному ответу
@@ -51,7 +51,7 @@ export class testingService {
     }
   }
   // response => data object (response.data)
-  async answer(task: Task, response: any): Promise<any> {
+  /*async answer(task: Task, response: any): Promise<any> {
     const oneTask = await this.taskRepository.findOne(task.id);
     // массив полей респонса
     const setOfFieldsR = _.keys(response);
@@ -75,5 +75,5 @@ export class testingService {
       // процентное совпадение с ответом
       return ((percentFields + percentValues) / 2) * 100;
     }
-  }
+  }*/
 }
