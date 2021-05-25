@@ -12,10 +12,10 @@ export class Task {
   @Column()
   number: number;
 
-  @Column()
-  description: string;
+  @Column({ nullable: true })
+  formulation: string;
 
-  @Column()
+  @Column({ nullable: true })
   standard: string;
 
   @Column()
