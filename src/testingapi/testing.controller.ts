@@ -8,10 +8,10 @@ import { RegstandartDto } from '../dto/regstandart.dto';
 export class testingController {
   constructor(private readonly testingService: testingService) {}
   //@UseGuards(JwtAuthGuard)
-  @Post('/eqPercent')
+  /*@Post('/eqPercent')
   getEqPercent(@Body() request: RegstandartDto): any {
     return this.testingService.getEqPercent(request);
-  }
+  }*/
   @Post('/req')
   getResponse(@Body() request: requestDto): any {
     return this.testingService.getRes(request);
